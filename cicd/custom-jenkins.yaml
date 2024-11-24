@@ -1,0 +1,28 @@
+controller:
+  admin:
+    username: "admin"
+    password: "admin"
+  ingress:
+    enabled: true
+    hostName: jenkins.local
+
+# agent:
+#   enabled: true
+#   podTemplates:
+#     - name: "default"
+#       label: "jenkins-agent"
+#       yaml: |
+#         apiVersion: v1
+#         kind: Pod
+#         spec:
+#           containers:
+#             - name: jnlp
+#               image: "jenkins/inbound-agent:4.10-3"
+#               resources:
+#                 requests:
+#                   cpu: "500m"
+#                   memory: "512Mi"
+#                 limits:
+#                   cpu: "1000m"
+#                   memory: "512Mi"
+  
