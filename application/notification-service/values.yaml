@@ -7,7 +7,7 @@ replicaCount: 1
 
 image:
   repository: hungtran679/mt-notification
-  tag: "v1.8"
+  tag: "v1.10"
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []
