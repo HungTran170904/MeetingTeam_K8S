@@ -5,7 +5,8 @@
 replicaCount: 2
 
 image:
-  repository: "rabbitmq:latest"
+  repository: "rabbitmq"
+  tag: latest
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []
@@ -27,7 +28,8 @@ securityContext:
 
 initContainers:
   rabbitmqConfig:
-    image: busybox:1.32.0
+    image: busybox
+    tag: 1.32.0
 
 secret:
   enabled: false

@@ -55,7 +55,7 @@ spec:
             claimName: {{ include "rabbitmq.name" . }}-data
       initContainers: 
         - name: {{ include "rabbitmq.name" . }}-config
-          image: "{{ .Values.initContainers.rabbitmqConfig.image }}"
+          image: "{{ .Values.initContainers.rabbitmqConfig.image }}:{{ .Values.initContainers.rabbitmqConfig.tag }}"
           volumeMounts:
             - name: rabbitmq-config
               mountPath: /tmp/rabbitmq
@@ -75,7 +75,7 @@ spec:
       {{- end }}
       containers:
         - name: {{ .Chart.Name }}
-          image: "{{ .Values.image.repository }}"
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           {{- with .Values.env }}
           env:
