@@ -4,7 +4,7 @@
 
 image:
   repository: hungtran679/mt-backend
-  tag: "v2.21"
+  tag: "v2.22"
   pullPolicy: Always
 
 imagePullSecrets: []
