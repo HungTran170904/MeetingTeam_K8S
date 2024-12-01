@@ -1,4 +1,4 @@
-replicas: 3
+replicas: 2
 
 antiAffinity: "soft"
 
@@ -9,10 +9,10 @@ esJavaOpts: "-Xmx128m -Xms128m"
 resources:
   requests:
     cpu: "200m"
-    memory: "256Mi"
+    memory: "512Mi"
   limits:
     cpu: "1000m"
-    memory: "256Mi"
+    memory: "512Mi"
 
 # Request smaller persistent volumes.
 volumeClaimTemplate:
