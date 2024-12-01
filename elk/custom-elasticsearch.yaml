@@ -1,6 +1,6 @@
-replicas: 2
+replicas: 3
 
-antiAffinity: "hard"
+antiAffinity: "soft"
 
 # Shrink default JVM heap.
 esJavaOpts: "-Xmx128m -Xms128m"
@@ -9,10 +9,10 @@ esJavaOpts: "-Xmx128m -Xms128m"
 resources:
   requests:
     cpu: "200m"
-    memory: "512Mi"
+    memory: "256Mi"
   limits:
     cpu: "1000m"
-    memory: "512Mi"
+    memory: "256Mi"
 
 # Request smaller persistent volumes.
 volumeClaimTemplate:

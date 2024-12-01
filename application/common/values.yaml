@@ -74,6 +74,7 @@ job:
 service:
   type: ClusterIP
   port: 80
+  nodePort: ""
   additionalPorts: []
 
 ingress:

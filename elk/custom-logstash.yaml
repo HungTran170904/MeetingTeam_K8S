@@ -3,10 +3,10 @@ logstashJavaOpts: "-Xmx256m -Xms256m"
 resources:
   requests:
     cpu: "100m"
-    memory: "1Gi"
+    memory: "512Mi"
   limits:
     cpu: "1000m"
-    memory: "1Gi"
+    memory: "512Mi"
 
 volumeClaimTemplate:
   accessModes: ["ReadWriteOnce"]
@@ -14,8 +14,6 @@ volumeClaimTemplate:
   resources:
     requests:
       storage: 512Mi
-
-antiAffinity: "soft"
 
 extraEnvs: 
   - name: xpack.monitoring.enabled
