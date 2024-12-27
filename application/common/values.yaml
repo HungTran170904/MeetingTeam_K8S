@@ -43,6 +43,9 @@ podSecurityContext: {}
 
 securityContext: {}
 
+livenessProbe: {}
+readinessProbe: {}
+
 configmap:
   enabled: false
   # name: ""
