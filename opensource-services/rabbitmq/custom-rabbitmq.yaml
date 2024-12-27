@@ -33,7 +33,7 @@ ingress:
   className: "nginx"
   annotations: {}
   hosts:
-    - host: k8s.rabbitmq.local
+    - host: rabbitmq.local
       paths:
         - path: /
           pathType: ImplementationSpecific
