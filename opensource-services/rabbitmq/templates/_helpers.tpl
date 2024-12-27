@@ -49,14 +49,3 @@ Selector labels
 app.kubernetes.io/name: {{ include "rabbitmq.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
-
-{{/*
-Create the name of the service account to use
-*/}}
-{{- define "rabbitmq.serviceAccountName" -}}
-{{- if .Values.serviceAccount.create }}
-{{- default (include "rabbitmq.name" .) .Values.serviceAccount.name }}
-{{- else }}
-{{- default "default" .Values.serviceAccount.name }}
-{{- end }}
-{{- end }}

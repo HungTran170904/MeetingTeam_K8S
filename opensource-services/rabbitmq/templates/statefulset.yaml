@@ -66,9 +66,7 @@ spec:
             - -c
             - cp /tmp/rabbitmq/rabbitmq.conf /etc/rabbitmq/rabbitmq.conf && echo '' >> /etc/rabbitmq/rabbitmq.conf;
               cp /tmp/rabbitmq/enabled_plugins /etc/rabbitmq/enabled_plugins
-      {{- if .Values.serviceAccount.create }}
-      serviceAccountName: {{ include "rabbitmq.serviceAccountName" . }}
-      {{- end }}
+      serviceAccountName: {{ include "rabbitmq.name" . }}
       {{- with .Values.securityContext }}
       securityContext:
         {{- toYaml . | nindent 8 }}
@@ -79,6 +77,8 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           {{- with .Values.env }}
           env:
+            - name: RABBITMQ_USE_LONGNAME
+              value: "true"
             {{- toYaml . | nindent 12}}
           {{- end}}
           {{- with .Values.resources }}
