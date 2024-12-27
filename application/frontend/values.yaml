@@ -6,7 +6,7 @@ replicaCount: 1
 
 image:
   repository: hungtran679/mt-frontend
-  tag: "v2.24"
+  tag: "v2.3"
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []
