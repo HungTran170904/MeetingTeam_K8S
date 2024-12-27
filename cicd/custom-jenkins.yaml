@@ -1,28 +1,71 @@
 controller:
-  admin:
-    username: "admin"
-    password: "admin"
+  installPlugins: []
+    # - kubernetes:4296.v20a_7e4d77cf6
+    # - workflow-aggregator:600.vb_57cdd26fdd7
+    # - git:5.6.0
+    # - configuration-as-code:1897.v79281e066ea_7
+    # - docker: 1.7.0
   ingress:
     enabled: true
     hostName: jenkins.local
 
-# agent:
-#   enabled: true
-#   podTemplates:
-#     - name: "default"
-#       label: "jenkins-agent"
-#       yaml: |
-#         apiVersion: v1
-#         kind: Pod
-#         spec:
-#           containers:
-#             - name: jnlp
-#               image: "jenkins/inbound-agent:4.10-3"
-#               resources:
-#                 requests:
-#                   cpu: "500m"
-#                   memory: "512Mi"
-#                 limits:
-#                   cpu: "1000m"
-#                   memory: "512Mi"
-  
+agent:
+  podTemplates:
+    springboot: |
+      - name: springboot
+        namespace: jenkins
+        label: jenkins-springboot
+        yaml: |
+          apiVersion: v1
+          kind: Pod
+          spec:
+            containers:
+              - name: maven
+                image: maven:3.8.3-openjdk-17
+                command:
+                  - cat
+                tty: true
+                volumeMounts:
+                  - name: maven-repo
+                    mountPath: /root/.m2
+              - name: docker
+                image: 'docker:latest'
+                command:
+                  - cat
+                tty: true
+                volumeMounts:
+                  - mountPath: /var/run/docker.sock
+                    name: docker-sock
+            volumes:
+              - name: maven-repo
+                hostPath:
+                  path: /var/maven
+              - name: docker-sock
+                hostPath:
+                  path: /var/run/docker.sock
+    nodejs: |
+      - name: nodejs
+        namespace: jenkins
+        label: jenkins-nodejs
+        yaml: |
+          apiVersion: v1
+          kind: Pod
+          spec:
+            containers:
+              - name: nodejs
+                image: 'node:18-alpine'
+                command:
+                  - cat
+                tty: true
+              - name: docker
+                image: 'docker:latest'
+                command:
+                  - cat
+                tty: true
+                volumeMounts:
+                  - mountPath: /var/run/docker.sock
+                    name: docker-sock
+            volumes:
+              - name: docker-sock
+                hostPath:
+                  path: /var/run/docker.sock
